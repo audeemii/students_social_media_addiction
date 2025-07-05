@@ -30,6 +30,11 @@ Pandas
 
 
 
+## Aplicación desplegada en render
+url: https://students-social-media-addiction.onrender.com
+
+
+
 ## Créditos
 
 Kaggle Dataset por Adil Shamim
