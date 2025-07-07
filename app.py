@@ -155,32 +155,3 @@ with st.expander('Show / Hide'):
         fig = px.scatter(df[ df['platform'].isin(top_platform.index) ], x="daily_usage", y='mental_health', title='Scatter of daily_usage and mental_health')
 
     st.write(fig)
-
-
-## ----------------------------- conflicts -------------------------------------
-
-conflicts_txt = '''#### Relation between daily usage and conflicts
-
-- The number of arguments or disagreements the student reports having had with family, friends, or partners due to their social media use, serving as a proxy for social friction.
-
-- There is a strong positive correlation between the number of reported social conflicts and daily social media usage.
-
-- No relationship is perceived between gender and number of conflicts or any other numerical variable.
-'''
-
-st.markdown(conflicts_txt)
-
-with st.expander('Show / Hide'):
-
-    fig = px.scatter(df[ df['platform'].isin(top_platform.index) ], x="daily_usage", y='mental_health', title='Scatter of daily_usage and mental_health')
-
-    left_conflict, middle_conflict, right_conflict = st.columns(3)
-    if left_conflict.button("Relationship status", key='left_conflict', use_container_width=True):
-        fig = px.scatter(df, x="daily_usage", y='conflicts', color='rel_status', title='Scatter of daily_usage and conflicts')
-    if middle_conflict.button("Gender", key='middle_conflict', use_container_width=True):
-        fig = px.scatter(df, x="daily_usage", y='conflicts', color='gender', title='Scatter of daily_usage and conflicts')
-    if right_conflict.button("None", key='right_conflict', use_container_width=True):
-        fig = px.scatter(df, x="daily_usage", y='conflicts', title='Scatter of daily_usage and conflicts')
-
-    st.write(fig)
-
