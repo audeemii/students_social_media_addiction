@@ -146,12 +146,12 @@ with st.expander('Show / Hide'):
 
     fig = px.scatter(df[ df['platform'].isin(top_platform.index) ], x="daily_usage", y='mental_health', title='Scatter of daily_usage and mental_health')
 
-    left, middle, right = st.columns(3)
-    if left.button("Relationship status", use_container_width=True):
+    left_mental, middle_mental, right_mental = st.columns(3)
+    if left_mental.button("Relationship status", key='left_mental', use_container_width=True):
         fig = px.scatter(df[ df['platform'].isin(top_platform.index) ], x="daily_usage", y='mental_health', color='rel_status', title='Scatter of daily_usage and mental_health')
-    if middle.button("Gender", use_container_width=True):
+    if middle_mental.button("Gender", key='middle_mental', use_container_width=True):
         fig = px.scatter(df[ df['platform'].isin(top_platform.index) ], x="daily_usage", y='mental_health', color='gender', title='Scatter of daily_usage and mental_health')
-    if right.button("None", use_container_width=True):
+    if right_mental.button("None", key='right_mental', use_container_width=True):
         fig = px.scatter(df[ df['platform'].isin(top_platform.index) ], x="daily_usage", y='mental_health', title='Scatter of daily_usage and mental_health')
 
     st.write(fig)
