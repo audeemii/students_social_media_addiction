@@ -143,7 +143,17 @@ mental_health_txt = '''#### Relation between daily usage and mental health
 st.markdown(mental_health_txt)
 
 with st.expander('Show / Hide'):
-    fig = px.scatter(df[ df['platform'].isin(top_platform.index) ], x="daily_usage", y='mental_health', color='rel_status', title='Scatter of daily_usage and mental_health')
+
+    fig = px.scatter(df[ df['platform'].isin(top_platform.index) ], x="daily_usage", y='mental_health', title='Scatter of daily_usage and mental_health')
+
+    left, middle, right = st.columns(3)
+    if left.button("Relationship status", use_container_width=True):
+        fig = px.scatter(df[ df['platform'].isin(top_platform.index) ], x="daily_usage", y='mental_health', color='rel_status', title='Scatter of daily_usage and mental_health')
+    if middle.button("Gender", use_container_width=True):
+        fig = px.scatter(df[ df['platform'].isin(top_platform.index) ], x="daily_usage", y='mental_health', color='gender', title='Scatter of daily_usage and mental_health')
+    if right.button("None", use_container_width=True):
+        fig = px.scatter(df[ df['platform'].isin(top_platform.index) ], x="daily_usage", y='mental_health', title='Scatter of daily_usage and mental_health')
+
     st.write(fig)
 
 
@@ -161,6 +171,16 @@ conflicts_txt = '''#### Relation between daily usage and conflicts
 st.markdown(conflicts_txt)
 
 with st.expander('Show / Hide'):
-    fig = px.scatter(df, x="daily_usage", y='conflicts', color='gender', title='Scatter of daily_usage and conflicts')
+
+    fig = px.scatter(df[ df['platform'].isin(top_platform.index) ], x="daily_usage", y='mental_health', title='Scatter of daily_usage and mental_health')
+
+    left_conflict, middle_conflict, right_conflict = st.columns(3)
+    if left_conflict.button("Relationship status", key='left_conflict', use_container_width=True):
+        fig = px.scatter(df, x="daily_usage", y='conflicts', color='rel_status', title='Scatter of daily_usage and conflicts')
+    if middle_conflict.button("Gender", key='middle_conflict', use_container_width=True):
+        fig = px.scatter(df, x="daily_usage", y='conflicts', color='gender', title='Scatter of daily_usage and conflicts')
+    if right_conflict.button("None", key='right_conflict', use_container_width=True):
+        fig = px.scatter(df, x="daily_usage", y='conflicts', title='Scatter of daily_usage and conflicts')
+
     st.write(fig)
 
